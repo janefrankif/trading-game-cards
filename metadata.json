@@ -1,0 +1,6 @@
+{
+  "name": "Trading Card Game Shop",
+  "description": "An online trading card shop featuring dedicated separated pages for Home, Shop Catalog, Featured Grails, About Us & Escrow, Collector Blog, FAQs, and Contact with bilateral trade escrow.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

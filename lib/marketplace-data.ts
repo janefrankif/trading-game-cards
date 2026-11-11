@@ -1,0 +1,3226 @@
+export interface CardItem {
+  id: string;
+  name: string;
+  game: 'Pokemon' | 'Magic: The Gathering' | 'Yu-Gi-Oh!' | 'Disney Lorcana' | 'One Piece';
+  set: string;
+  setYear: number;
+  cardNumber: string;
+  rarity: string;
+  finish: 'Foil' | 'Holofoil' | 'Reverse Holo' | 'Secret Rare' | 'Normal';
+  isGraded: boolean;
+  gradingCompany?: 'PSA' | 'BGS' | 'CGC';
+  gradeScore?: string;
+  rawCondition?: 'Near Mint (NM)' | 'Lightly Played (LP)' | 'Moderately Played (MP)' | 'Heavily Played (HP)' | 'Damaged';
+  marketPrice: number;
+  listingPrice: number;
+  sevenDayChange: number; // percentage
+  seller: {
+    name: string;
+    location: string;
+    verifiedTier: 'Pro Hobby Shop' | 'Elite Collector' | 'Verified Trader';
+    rating: number;
+    salesCount: number;
+    badge: string;
+  };
+  subgrades?: {
+    centering: number;
+    corners: number;
+    edges: number;
+    surface: number;
+  };
+  popReport?: {
+    popAtGrade: number;
+    popHigher: number;
+  };
+  recentSales: {
+    date: string;
+    price: number;
+    platform: 'TCGPlayer' | 'eBay Sold' | 'Platform Escrow';
+  }[];
+  priceHistory: number[]; // 7 points
+  image: string;
+  allowTrades: boolean;
+  tradePreferences?: string[];
+  description: string;
+  seoData: {
+    slug: string;
+    metaTitle: string;
+    metaDescription: string;
+    targetKeywords: string[];
+    schemaType: 'IndividualProduct' | 'Product';
+  };
+}
+
+export const SAMPLE_CARDS: CardItem[] = [
+  {
+    "id": "prod-0",
+    "name": "Chaos Rising Booster box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 241.5,
+    "listingPrice": 230,
+    "sevenDayChange": -1.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      230,
+      230,
+      230,
+      230,
+      230,
+      230,
+      230
+    ],
+    "image": "/products/chaos rising booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Chaos Rising Booster box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-0",
+      "metaTitle": "Chaos Rising Booster box - Best Price",
+      "metaDescription": "Buy authentic sealed Chaos Rising Booster box with buyer protection.",
+      "targetKeywords": [
+        "chaos rising booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-1",
+    "name": "Chaose Rising Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 73.5,
+    "listingPrice": 70,
+    "sevenDayChange": 0.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70
+    ],
+    "image": "https://picsum.photos/seed/tcg-1/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Chaose Rising Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-1",
+      "metaTitle": "Chaose Rising Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Chaose Rising Etbs with buyer protection.",
+      "targetKeywords": [
+        "chaose rising etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-2",
+    "name": "Mega Evolution Booster box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 252,
+    "listingPrice": 240,
+    "sevenDayChange": 1.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240
+    ],
+    "image": "/products/mega evolution booster box 250.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Mega Evolution Booster box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-2",
+      "metaTitle": "Mega Evolution Booster box - Best Price",
+      "metaDescription": "Buy authentic sealed Mega Evolution Booster box with buyer protection.",
+      "targetKeywords": [
+        "mega evolution booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-3",
+    "name": "Mega Evolution Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 89.25,
+    "listingPrice": 85,
+    "sevenDayChange": 0.8,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      85,
+      85,
+      85,
+      85,
+      85,
+      85,
+      85
+    ],
+    "image": "/products/mega evolution booster box 230.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Mega Evolution Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-3",
+      "metaTitle": "Mega Evolution Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Mega Evolution Etbs with buyer protection.",
+      "targetKeywords": [
+        "mega evolution etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-4",
+    "name": "Mega Evolution Bundle",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 47.25,
+    "listingPrice": 45,
+    "sevenDayChange": 1.6,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45
+    ],
+    "image": "/products/mega evolution bundle.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Mega Evolution Bundle. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-4",
+      "metaTitle": "Mega Evolution Bundle - Best Price",
+      "metaDescription": "Buy authentic sealed Mega Evolution Bundle with buyer protection.",
+      "targetKeywords": [
+        "mega evolution bundle",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-5",
+    "name": "Prismatic Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 136.5,
+    "listingPrice": 130,
+    "sevenDayChange": 2.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      130,
+      130,
+      130,
+      130,
+      130,
+      130,
+      130
+    ],
+    "image": "https://picsum.photos/seed/tcg-5/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Prismatic Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-5",
+      "metaTitle": "Prismatic Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Prismatic Etbs with buyer protection.",
+      "targetKeywords": [
+        "prismatic etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-6",
+    "name": "Prismatic Spc",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 168,
+    "listingPrice": 160,
+    "sevenDayChange": 0.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160
+    ],
+    "image": "https://picsum.photos/seed/tcg-6/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Prismatic Spc. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-6",
+      "metaTitle": "Prismatic Spc - Best Price",
+      "metaDescription": "Buy authentic sealed Prismatic Spc with buyer protection.",
+      "targetKeywords": [
+        "prismatic spc",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-7",
+    "name": "Prismatic 2-packs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 2.1,
+    "listingPrice": 2,
+    "sevenDayChange": 2.2,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "image": "https://picsum.photos/seed/tcg-7/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Prismatic 2-packs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-7",
+      "metaTitle": "Prismatic 2-packs - Best Price",
+      "metaDescription": "Buy authentic sealed Prismatic 2-packs with buyer protection.",
+      "targetKeywords": [
+        "prismatic 2-packs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-8",
+    "name": "Prismatic Bundles",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 63,
+    "listingPrice": 60,
+    "sevenDayChange": 2.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60
+    ],
+    "image": "https://picsum.photos/seed/tcg-8/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Prismatic Bundles. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-8",
+      "metaTitle": "Prismatic Bundles - Best Price",
+      "metaDescription": "Buy authentic sealed Prismatic Bundles with buyer protection.",
+      "targetKeywords": [
+        "prismatic bundles",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-9",
+    "name": "Ascended heroes Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 136.5,
+    "listingPrice": 130,
+    "sevenDayChange": 2,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      130,
+      130,
+      130,
+      130,
+      130,
+      130,
+      130
+    ],
+    "image": "/products/ascended heroes display case 300.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Ascended heroes Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-9",
+      "metaTitle": "Ascended heroes Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Ascended heroes Etbs with buyer protection.",
+      "targetKeywords": [
+        "ascended heroes etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-10",
+    "name": "Ascended Heroes Booster Bundles",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 52.5,
+    "listingPrice": 50,
+    "sevenDayChange": 1.2,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50
+    ],
+    "image": "/products/ascended heroes display case 300.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Ascended Heroes Booster Bundles. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-10",
+      "metaTitle": "Ascended Heroes Booster Bundles - Best Price",
+      "metaDescription": "Buy authentic sealed Ascended Heroes Booster Bundles with buyer protection.",
+      "targetKeywords": [
+        "ascended heroes booster bundles",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-11",
+    "name": "Ascended Heroes PC Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 283.5,
+    "listingPrice": 270,
+    "sevenDayChange": -1.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      270,
+      270,
+      270,
+      270,
+      270,
+      270,
+      270
+    ],
+    "image": "/products/ascended heroes display case 300.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Ascended Heroes PC Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-11",
+      "metaTitle": "Ascended Heroes PC Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Ascended Heroes PC Etbs with buyer protection.",
+      "targetKeywords": [
+        "ascended heroes pc etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-12",
+    "name": "Surging Sparks Bundle",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 47.25,
+    "listingPrice": 45,
+    "sevenDayChange": 1.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45
+    ],
+    "image": "https://picsum.photos/seed/tcg-12/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Surging Sparks Bundle. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-12",
+      "metaTitle": "Surging Sparks Bundle - Best Price",
+      "metaDescription": "Buy authentic sealed Surging Sparks Bundle with buyer protection.",
+      "targetKeywords": [
+        "surging sparks bundle",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-13",
+    "name": "Phantasmal Flames Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 262.5,
+    "listingPrice": 250,
+    "sevenDayChange": 1.8,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      250,
+      250,
+      250,
+      250,
+      250,
+      250,
+      250
+    ],
+    "image": "/products/Darkness ablaze booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Phantasmal Flames Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-13",
+      "metaTitle": "Phantasmal Flames Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Phantasmal Flames Booster Box with buyer protection.",
+      "targetKeywords": [
+        "phantasmal flames booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-14",
+    "name": "Phantasmal Flames UPC",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 147,
+    "listingPrice": 140,
+    "sevenDayChange": 2.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      140,
+      140,
+      140,
+      140,
+      140,
+      140,
+      140
+    ],
+    "image": "https://picsum.photos/seed/tcg-14/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Phantasmal Flames UPC. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-14",
+      "metaTitle": "Phantasmal Flames UPC - Best Price",
+      "metaDescription": "Buy authentic sealed Phantasmal Flames UPC with buyer protection.",
+      "targetKeywords": [
+        "phantasmal flames upc",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-15",
+    "name": "Phantasmal Flames PC Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 147,
+    "listingPrice": 140,
+    "sevenDayChange": -1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      140,
+      140,
+      140,
+      140,
+      140,
+      140,
+      140
+    ],
+    "image": "https://picsum.photos/seed/tcg-15/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Phantasmal Flames PC Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-15",
+      "metaTitle": "Phantasmal Flames PC Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Phantasmal Flames PC Etbs with buyer protection.",
+      "targetKeywords": [
+        "phantasmal flames pc etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-16",
+    "name": "Paldean Fates",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 210,
+    "listingPrice": 200,
+    "sevenDayChange": 1.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "image": "https://picsum.photos/seed/tcg-16/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Paldean Fates. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-16",
+      "metaTitle": "Paldean Fates - Best Price",
+      "metaDescription": "Buy authentic sealed Paldean Fates with buyer protection.",
+      "targetKeywords": [
+        "paldean fates",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-17",
+    "name": "Crown Zenith",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 241.5,
+    "listingPrice": 230,
+    "sevenDayChange": -0.6,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      230,
+      230,
+      230,
+      230,
+      230,
+      230,
+      230
+    ],
+    "image": "/products/crown-zenith.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Crown Zenith. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-17",
+      "metaTitle": "Crown Zenith - Best Price",
+      "metaDescription": "Buy authentic sealed Crown Zenith with buyer protection.",
+      "targetKeywords": [
+        "crown zenith",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-18",
+    "name": "151 UPC",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 158.55,
+    "listingPrice": 151,
+    "sevenDayChange": -1.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      151,
+      151,
+      151,
+      151,
+      151,
+      151,
+      151
+    ],
+    "image": "/products/151 upc ultra-premium collection.webp",
+    "allowTrades": false,
+    "description": "Factory sealed 151 UPC. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-18",
+      "metaTitle": "151 UPC - Best Price",
+      "metaDescription": "Buy authentic sealed 151 UPC with buyer protection.",
+      "targetKeywords": [
+        "151 upc",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-19",
+    "name": "151 Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 158.55,
+    "listingPrice": 151,
+    "sevenDayChange": -1.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      151,
+      151,
+      151,
+      151,
+      151,
+      151,
+      151
+    ],
+    "image": "https://picsum.photos/seed/tcg-19/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed 151 Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-19",
+      "metaTitle": "151 Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed 151 Etbs with buyer protection.",
+      "targetKeywords": [
+        "151 etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-20",
+    "name": "151 PC Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 158.55,
+    "listingPrice": 151,
+    "sevenDayChange": -1.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      151,
+      151,
+      151,
+      151,
+      151,
+      151,
+      151
+    ],
+    "image": "https://picsum.photos/seed/tcg-20/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed 151 PC Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-20",
+      "metaTitle": "151 PC Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed 151 PC Etbs with buyer protection.",
+      "targetKeywords": [
+        "151 pc etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-21",
+    "name": "151 Blooming waters",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 158.55,
+    "listingPrice": 151,
+    "sevenDayChange": 1.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      151,
+      151,
+      151,
+      151,
+      151,
+      151,
+      151
+    ],
+    "image": "/products/151 bloomingwaters.webp",
+    "allowTrades": false,
+    "description": "Factory sealed 151 Blooming waters. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-21",
+      "metaTitle": "151 Blooming waters - Best Price",
+      "metaDescription": "Buy authentic sealed 151 Blooming waters with buyer protection.",
+      "targetKeywords": [
+        "151 blooming waters",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-22",
+    "name": "151 Booster Bundles",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 158.55,
+    "listingPrice": 151,
+    "sevenDayChange": 0.8,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      151,
+      151,
+      151,
+      151,
+      151,
+      151,
+      151
+    ],
+    "image": "https://picsum.photos/seed/tcg-22/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed 151 Booster Bundles. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-22",
+      "metaTitle": "151 Booster Bundles - Best Price",
+      "metaDescription": "Buy authentic sealed 151 Booster Bundles with buyer protection.",
+      "targetKeywords": [
+        "151 booster bundles",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-23",
+    "name": "Destined Rivals Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 315,
+    "listingPrice": 300,
+    "sevenDayChange": 2.2,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      300,
+      300,
+      300,
+      300,
+      300,
+      300,
+      300
+    ],
+    "image": "/products/Destined rivals booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Destined Rivals Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-23",
+      "metaTitle": "Destined Rivals Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Destined Rivals Booster Box with buyer protection.",
+      "targetKeywords": [
+        "destined rivals booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-24",
+    "name": "Destined Rivals Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 105,
+    "listingPrice": 100,
+    "sevenDayChange": 0.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "image": "/products/destined-rivals-etb.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Destined Rivals Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-24",
+      "metaTitle": "Destined Rivals Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Destined Rivals Etbs with buyer protection.",
+      "targetKeywords": [
+        "destined rivals etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-25",
+    "name": "Destined Rivals Bundle",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 63,
+    "listingPrice": 60,
+    "sevenDayChange": -1.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60
+    ],
+    "image": "/products/Destined rivals booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Destined Rivals Bundle. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-25",
+      "metaTitle": "Destined Rivals Bundle - Best Price",
+      "metaDescription": "Buy authentic sealed Destined Rivals Bundle with buyer protection.",
+      "targetKeywords": [
+        "destined rivals bundle",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-26",
+    "name": "Surging Sparks Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 84,
+    "listingPrice": 80,
+    "sevenDayChange": 0.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80
+    ],
+    "image": "https://picsum.photos/seed/tcg-26/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Surging Sparks Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-26",
+      "metaTitle": "Surging Sparks Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Surging Sparks Etbs with buyer protection.",
+      "targetKeywords": [
+        "surging sparks etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-27",
+    "name": "Surging Sparks Booster box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 252,
+    "listingPrice": 240,
+    "sevenDayChange": 1.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240
+    ],
+    "image": "/products/Darkness ablaze booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Surging Sparks Booster box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-27",
+      "metaTitle": "Surging Sparks Booster box - Best Price",
+      "metaDescription": "Buy authentic sealed Surging Sparks Booster box with buyer protection.",
+      "targetKeywords": [
+        "surging sparks booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-28",
+    "name": "Black Bolt Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 94.5,
+    "listingPrice": 90,
+    "sevenDayChange": 1.6,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      90,
+      90,
+      90,
+      90,
+      90,
+      90,
+      90
+    ],
+    "image": "/products/black bolt booster bundle.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Black Bolt Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-28",
+      "metaTitle": "Black Bolt Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Black Bolt Etbs with buyer protection.",
+      "targetKeywords": [
+        "black bolt etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-29",
+    "name": "White Flare Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 94.5,
+    "listingPrice": 90,
+    "sevenDayChange": 2,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      90,
+      90,
+      90,
+      90,
+      90,
+      90,
+      90
+    ],
+    "image": "https://picsum.photos/seed/tcg-29/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed White Flare Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-29",
+      "metaTitle": "White Flare Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed White Flare Etbs with buyer protection.",
+      "targetKeywords": [
+        "white flare etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-30",
+    "name": "Prismatic 2-packs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 2.1,
+    "listingPrice": 2,
+    "sevenDayChange": -1.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "image": "https://picsum.photos/seed/tcg-30/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Prismatic 2-packs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-30",
+      "metaTitle": "Prismatic 2-packs - Best Price",
+      "metaDescription": "Buy authentic sealed Prismatic 2-packs with buyer protection.",
+      "targetKeywords": [
+        "prismatic 2-packs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-31",
+    "name": "Team Rocket UPC",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 231,
+    "listingPrice": 220,
+    "sevenDayChange": 1.5,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      220,
+      220,
+      220,
+      220,
+      220,
+      220,
+      220
+    ],
+    "image": "https://picsum.photos/seed/tcg-31/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Team Rocket UPC. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-31",
+      "metaTitle": "Team Rocket UPC - Best Price",
+      "metaDescription": "Buy authentic sealed Team Rocket UPC with buyer protection.",
+      "targetKeywords": [
+        "team rocket upc",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-32",
+    "name": "Perfect Order Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 252,
+    "listingPrice": 240,
+    "sevenDayChange": 0.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240
+    ],
+    "image": "/products/Darkness ablaze booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Perfect Order Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-32",
+      "metaTitle": "Perfect Order Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Perfect Order Booster Box with buyer protection.",
+      "targetKeywords": [
+        "perfect order booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-33",
+    "name": "Perfect Order Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 89.25,
+    "listingPrice": 85,
+    "sevenDayChange": 1.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      85,
+      85,
+      85,
+      85,
+      85,
+      85,
+      85
+    ],
+    "image": "https://picsum.photos/seed/tcg-33/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Perfect Order Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-33",
+      "metaTitle": "Perfect Order Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Perfect Order Etbs with buyer protection.",
+      "targetKeywords": [
+        "perfect order etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-34",
+    "name": "Lost Origin Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 105,
+    "listingPrice": 100,
+    "sevenDayChange": 0.6,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "image": "/products/Lost origin etbs.png",
+    "allowTrades": false,
+    "description": "Factory sealed Lost Origin Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-34",
+      "metaTitle": "Lost Origin Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Lost Origin Etbs with buyer protection.",
+      "targetKeywords": [
+        "lost origin etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-35",
+    "name": "Chois Rising Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 105,
+    "listingPrice": 100,
+    "sevenDayChange": -2.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "image": "https://picsum.photos/seed/tcg-35/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Chois Rising Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-35",
+      "metaTitle": "Chois Rising Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Chois Rising Etbs with buyer protection.",
+      "targetKeywords": [
+        "chois rising etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-36",
+    "name": "Sealed Shrouded Fable",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 84,
+    "listingPrice": 80,
+    "sevenDayChange": 1.7,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80
+    ],
+    "image": "https://picsum.photos/seed/tcg-36/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Sealed Shrouded Fable. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-36",
+      "metaTitle": "Sealed Shrouded Fable - Best Price",
+      "metaDescription": "Buy authentic sealed Sealed Shrouded Fable with buyer protection.",
+      "targetKeywords": [
+        "sealed shrouded fable",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-37",
+    "name": "Silver Tempest Bundle",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 68.25,
+    "listingPrice": 65,
+    "sevenDayChange": 1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65
+    ],
+    "image": "https://picsum.photos/seed/tcg-37/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Silver Tempest Bundle. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-37",
+      "metaTitle": "Silver Tempest Bundle - Best Price",
+      "metaDescription": "Buy authentic sealed Silver Tempest Bundle with buyer protection.",
+      "targetKeywords": [
+        "silver tempest bundle",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-38",
+    "name": "Journey Together Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 262.5,
+    "listingPrice": 250,
+    "sevenDayChange": -2.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      250,
+      250,
+      250,
+      250,
+      250,
+      250,
+      250
+    ],
+    "image": "/products/Journey together booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Journey Together Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-38",
+      "metaTitle": "Journey Together Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Journey Together Booster Box with buyer protection.",
+      "targetKeywords": [
+        "journey together booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-39",
+    "name": "Journey Together Etbs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 89.25,
+    "listingPrice": 85,
+    "sevenDayChange": 0.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      85,
+      85,
+      85,
+      85,
+      85,
+      85,
+      85
+    ],
+    "image": "/products/Journey together booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Journey Together Etbs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-39",
+      "metaTitle": "Journey Together Etbs - Best Price",
+      "metaDescription": "Buy authentic sealed Journey Together Etbs with buyer protection.",
+      "targetKeywords": [
+        "journey together etbs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-40",
+    "name": "Journey Together Bundles",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 47.25,
+    "listingPrice": 45,
+    "sevenDayChange": 1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      45,
+      45,
+      45,
+      45,
+      45,
+      45,
+      45
+    ],
+    "image": "/products/Journey together booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Journey Together Bundles. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-40",
+      "metaTitle": "Journey Together Bundles - Best Price",
+      "metaDescription": "Buy authentic sealed Journey Together Bundles with buyer protection.",
+      "targetKeywords": [
+        "journey together bundles",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-41",
+    "name": "White Flare Booster bundles",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 42,
+    "listingPrice": 40,
+    "sevenDayChange": 1.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40
+    ],
+    "image": "https://picsum.photos/seed/tcg-41/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed White Flare Booster bundles. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-41",
+      "metaTitle": "White Flare Booster bundles - Best Price",
+      "metaDescription": "Buy authentic sealed White Flare Booster bundles with buyer protection.",
+      "targetKeywords": [
+        "white flare booster bundles",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-42",
+    "name": "Black Bolt Booster Bundles",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 42,
+    "listingPrice": 40,
+    "sevenDayChange": 1.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40
+    ],
+    "image": "/products/black bolt booster bundle.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Black Bolt Booster Bundles. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-42",
+      "metaTitle": "Black Bolt Booster Bundles - Best Price",
+      "metaDescription": "Buy authentic sealed Black Bolt Booster Bundles with buyer protection.",
+      "targetKeywords": [
+        "black bolt booster bundles",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-43",
+    "name": "Surging Sparks 2packs",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 2.1,
+    "listingPrice": 2,
+    "sevenDayChange": 2.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "image": "https://picsum.photos/seed/tcg-43/600/840",
+    "allowTrades": false,
+    "description": "Factory sealed Surging Sparks 2packs. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-43",
+      "metaTitle": "Surging Sparks 2packs - Best Price",
+      "metaDescription": "Buy authentic sealed Surging Sparks 2packs with buyer protection.",
+      "targetKeywords": [
+        "surging sparks 2packs",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-44",
+    "name": "Chilling Reign Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 273,
+    "listingPrice": 260,
+    "sevenDayChange": 2.2,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      260,
+      260,
+      260,
+      260,
+      260,
+      260,
+      260
+    ],
+    "image": "/products/chilling reign booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Chilling Reign Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-44",
+      "metaTitle": "Chilling Reign Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Chilling Reign Booster Box with buyer protection.",
+      "targetKeywords": [
+        "chilling reign booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-45",
+    "name": "Temporal Force Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 231,
+    "listingPrice": 220,
+    "sevenDayChange": 0.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      220,
+      220,
+      220,
+      220,
+      220,
+      220,
+      220
+    ],
+    "image": "/products/Darkness ablaze booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Temporal Force Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-45",
+      "metaTitle": "Temporal Force Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Temporal Force Booster Box with buyer protection.",
+      "targetKeywords": [
+        "temporal force booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-46",
+    "name": "Fusion Strike Booster box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 241.5,
+    "listingPrice": 230,
+    "sevenDayChange": -0.7,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      230,
+      230,
+      230,
+      230,
+      230,
+      230,
+      230
+    ],
+    "image": "/products/fusion strike booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed Fusion Strike Booster box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-46",
+      "metaTitle": "Fusion Strike Booster box - Best Price",
+      "metaDescription": "Buy authentic sealed Fusion Strike Booster box with buyer protection.",
+      "targetKeywords": [
+        "fusion strike booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-47",
+    "name": "Darkness Ablaze Booster box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 241.5,
+    "listingPrice": 230,
+    "sevenDayChange": -2.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      230,
+      230,
+      230,
+      230,
+      230,
+      230,
+      230
+    ],
+    "image": "/products/Darkness ablaze booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Darkness Ablaze Booster box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-47",
+      "metaTitle": "Darkness Ablaze Booster box - Best Price",
+      "metaDescription": "Buy authentic sealed Darkness Ablaze Booster box with buyer protection.",
+      "targetKeywords": [
+        "darkness ablaze booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-48",
+    "name": "Paradox Rift Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 252,
+    "listingPrice": 240,
+    "sevenDayChange": 0.6,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240
+    ],
+    "image": "/products/Darkness ablaze booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Paradox Rift Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-48",
+      "metaTitle": "Paradox Rift Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Paradox Rift Booster Box with buyer protection.",
+      "targetKeywords": [
+        "paradox rift booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-49",
+    "name": "Stellar Crown Booster Box",
+    "game": "Pokemon",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 252,
+    "listingPrice": 240,
+    "sevenDayChange": -0.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240
+    ],
+    "image": "/products/Darkness ablaze booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Stellar Crown Booster Box. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-49",
+      "metaTitle": "Stellar Crown Booster Box - Best Price",
+      "metaDescription": "Buy authentic sealed Stellar Crown Booster Box with buyer protection.",
+      "targetKeywords": [
+        "stellar crown booster box",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-50",
+    "name": "OP-14 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 24,
+    "listingPrice": 14,
+    "sevenDayChange": 0.7,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      9,
+      14,
+      19,
+      14,
+      12,
+      17,
+      14
+    ],
+    "image": "/products/OP-05 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-14. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-50",
+      "metaTitle": "OP-14 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-14 with buyer protection.",
+      "targetKeywords": [
+        "op-14",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-51",
+    "name": "OP-13 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 23,
+    "listingPrice": 13,
+    "sevenDayChange": 1.5,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      8,
+      13,
+      18,
+      13,
+      11,
+      16,
+      13
+    ],
+    "image": "/products/OP-05 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-13. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-51",
+      "metaTitle": "OP-13 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-13 with buyer protection.",
+      "targetKeywords": [
+        "op-13",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-52",
+    "name": "OP-12 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 22,
+    "listingPrice": 12,
+    "sevenDayChange": 2.2,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      7,
+      12,
+      17,
+      12,
+      10,
+      15,
+      12
+    ],
+    "image": "/products/OP-05 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-12. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-52",
+      "metaTitle": "OP-12 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-12 with buyer protection.",
+      "targetKeywords": [
+        "op-12",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-53",
+    "name": "OP-11 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 21,
+    "listingPrice": 11,
+    "sevenDayChange": 2.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      6,
+      11,
+      16,
+      11,
+      9,
+      14,
+      11
+    ],
+    "image": "/products/op-11 booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed OP-11. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-53",
+      "metaTitle": "OP-11 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-11 with buyer protection.",
+      "targetKeywords": [
+        "op-11",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-54",
+    "name": "OP-10 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 20,
+    "listingPrice": 10,
+    "sevenDayChange": 0,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      5,
+      10,
+      15,
+      10,
+      8,
+      13,
+      10
+    ],
+    "image": "/products/Op-10 booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed OP-10. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-54",
+      "metaTitle": "OP-10 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-10 with buyer protection.",
+      "targetKeywords": [
+        "op-10",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-55",
+    "name": "OP-09 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 19,
+    "listingPrice": 9,
+    "sevenDayChange": -1.3,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      4,
+      9,
+      14,
+      9,
+      7,
+      12,
+      9
+    ],
+    "image": "/products/OP-09 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-09. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-55",
+      "metaTitle": "OP-09 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-09 with buyer protection.",
+      "targetKeywords": [
+        "op-09",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-56",
+    "name": "OP-08 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 18,
+    "listingPrice": 8,
+    "sevenDayChange": 0.7,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      3,
+      8,
+      13,
+      8,
+      6,
+      11,
+      8
+    ],
+    "image": "/products/op-08 booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed OP-08. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-56",
+      "metaTitle": "OP-08 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-08 with buyer protection.",
+      "targetKeywords": [
+        "op-08",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-57",
+    "name": "OP-07 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 17,
+    "listingPrice": 7,
+    "sevenDayChange": 0,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      2,
+      7,
+      12,
+      7,
+      5,
+      10,
+      7
+    ],
+    "image": "/products/OP-07-booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-07. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-57",
+      "metaTitle": "OP-07 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-07 with buyer protection.",
+      "targetKeywords": [
+        "op-07",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-58",
+    "name": "OP-06 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 16,
+    "listingPrice": 6,
+    "sevenDayChange": 0.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      1,
+      6,
+      11,
+      6,
+      4,
+      9,
+      6
+    ],
+    "image": "/products/Op-06 booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed OP-06. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-58",
+      "metaTitle": "OP-06 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-06 with buyer protection.",
+      "targetKeywords": [
+        "op-06",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-59",
+    "name": "OP-05 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 15,
+    "listingPrice": 5,
+    "sevenDayChange": -2.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      0,
+      5,
+      10,
+      5,
+      3,
+      8,
+      5
+    ],
+    "image": "/products/OP-05 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-05. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-59",
+      "metaTitle": "OP-05 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-05 with buyer protection.",
+      "targetKeywords": [
+        "op-05",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-60",
+    "name": "OP-04 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 14,
+    "listingPrice": 4,
+    "sevenDayChange": 1.5,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      -1,
+      4,
+      9,
+      4,
+      2,
+      7,
+      4
+    ],
+    "image": "/products/Op-04 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-04. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-60",
+      "metaTitle": "OP-04 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-04 with buyer protection.",
+      "targetKeywords": [
+        "op-04",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-61",
+    "name": "OP-03 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 13,
+    "listingPrice": 3,
+    "sevenDayChange": 0.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      -2,
+      3,
+      8,
+      3,
+      1,
+      6,
+      3
+    ],
+    "image": "/products/op-03 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-03. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-61",
+      "metaTitle": "OP-03 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-03 with buyer protection.",
+      "targetKeywords": [
+        "op-03",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-62",
+    "name": "Op-02 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 12,
+    "listingPrice": 2,
+    "sevenDayChange": -2.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      -3,
+      2,
+      7,
+      2,
+      0,
+      5,
+      2
+    ],
+    "image": "/products/op-02 booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed Op-02. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-62",
+      "metaTitle": "Op-02 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed Op-02 with buyer protection.",
+      "targetKeywords": [
+        "op-02",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-63",
+    "name": "OP-01 Blue & White Booster Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 260,
+    "listingPrice": 250,
+    "sevenDayChange": -1.9,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      245,
+      250,
+      255,
+      250,
+      248,
+      253,
+      250
+    ],
+    "image": "/products/op-01 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-01 Blue & White Booster. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-63",
+      "metaTitle": "OP-01 Blue & White Booster Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-01 Blue & White Booster with buyer protection.",
+      "targetKeywords": [
+        "op-01 blue & white booster",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-64",
+    "name": "EB-01 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 11,
+    "listingPrice": 1,
+    "sevenDayChange": 0.1,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      -4,
+      1,
+      6,
+      1,
+      -1,
+      4,
+      1
+    ],
+    "image": "/products/op-01 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed EB-01. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-64",
+      "metaTitle": "EB-01 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed EB-01 with buyer protection.",
+      "targetKeywords": [
+        "eb-01",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-65",
+    "name": "EB-02 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 12,
+    "listingPrice": 2,
+    "sevenDayChange": 0.5,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      -3,
+      2,
+      7,
+      2,
+      0,
+      5,
+      2
+    ],
+    "image": "/products/op-02 booster box.webp",
+    "allowTrades": false,
+    "description": "Factory sealed EB-02. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-65",
+      "metaTitle": "EB-02 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed EB-02 with buyer protection.",
+      "targetKeywords": [
+        "eb-02",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  },
+  {
+    "id": "prod-66",
+    "name": "OP-01.5 Box",
+    "game": "One Piece",
+    "set": "Sealed Product",
+    "setYear": 2024,
+    "cardNumber": "SEALED",
+    "rarity": "Sealed Box",
+    "finish": "Normal",
+    "isGraded": false,
+    "marketPrice": 25,
+    "listingPrice": 15,
+    "sevenDayChange": -0.4,
+    "seller": {
+      "name": "Vault Cards Official",
+      "location": "New York, NY",
+      "verifiedTier": "Pro Hobby Shop",
+      "rating": 100,
+      "salesCount": 5000,
+      "badge": "Direct Inventory"
+    },
+    "recentSales": [],
+    "priceHistory": [
+      10,
+      15,
+      20,
+      15,
+      13,
+      18,
+      15
+    ],
+    "image": "/products/op-01 booster box.jpeg",
+    "allowTrades": false,
+    "description": "Factory sealed OP-01.5. Guaranteed untampered.",
+    "seoData": {
+      "slug": "sealed-product-66",
+      "metaTitle": "OP-01.5 Sealed Box - Best Price",
+      "metaDescription": "Buy authentic sealed OP-01.5 with buyer protection.",
+      "targetKeywords": [
+        "op-01.5",
+        "sealed product"
+      ],
+      "schemaType": "Product"
+    }
+  }
+];
+
+export interface StrategyTopic {
+  id: string;
+  category: 'features' | 'platforms' | 'security' | 'seo';
+  title: string;
+  summary: string;
+  badge: string;
+  highlights: string[];
+  inDepthArchitecture: {
+    heading: string;
+    paragraphs: string[];
+    technicalPoints?: string[];
+    usMarketNote?: string;
+  }[];
+}
+
+export const STRATEGY_TOPICS: StrategyTopic[] = [
+  {
+    id: 'specialized-features',
+    category: 'features',
+    title: 'Specialized TCG Marketplace Features',
+    summary: 'Why generic Shopify or WooCommerce stores fail: Trading cards demand a dual-condition catalog matrix, bilateral trade matching, and live price indexing.',
+    badge: 'Core Functional Architecture',
+    highlights: [
+      'Dual-Track Catalog (Parent Card ID -> Variant Sets: Raw NM/LP/MP/HP vs Graded PSA/BGS/CGC)',
+      'Bilateral & Cash-Delta Trade Engine (Card A + $50 Cash for Card B)',
+      'High-Resolution Macro Inspection Loupe (1200 DPI edge/corner scan with sub-grade overlays)',
+      'Digital Binder Sync & Automated Want-List Matchmaker',
+      'Real-Time Live Market Price Aggregator (TCGPlayer API & eBay Terapeak Sold Scrapes)',
+    ],
+    inDepthArchitecture: [
+      {
+        heading: '1. Catalog Hierarchies: The Parent-Variant Model',
+        paragraphs: [
+          'In standard e-commerce, a shirt has size and color. In TCGs, a single card has Game > Franchise > Era > Set > Card Number > Print Variant (Foil, Non-Foil, Reverse Holo, Stamped, 1st Edition) > Preservation Type (Raw vs Graded).',
+          'A Raw card must track standardized condition grades adhering to US collector norms (Near Mint, Lightly Played, Moderately Played, Heavily Played, Damaged). Graded slabs must store company (PSA, BGS, CGC, SGC), certificate serial number, sub-grades, and slab generation.',
+        ],
+        technicalPoints: [
+          'Database design: BaseCard (metadata, official artwork, set number) has 1-to-many CardVariants (finish, edition), which has 1-to-many ListingItems (individual physical instances with unique photos and cert numbers).',
+          'Serial Verification webhook: Query PSA or CGC public cert lookup APIs upon seller submission to auto-populate grade, card details, and flag re-cased or stolen certs.',
+        ],
+        usMarketNote: 'US buyers rely almost universally on PSA/CGC grading for Pokemon & Sports, and BGS/PSA for MTG vintage. Hardcoding cert number validation builds instant trust.',
+      },
+      {
+        heading: '2. Bilateral Trading & Cash-Delta Matchmaking',
+        paragraphs: [
+          'Collectors rarely just buy with cash; over 42% of high-value transactions in the US hobby community involve trades or trades plus cash (trade-up deltas).',
+          'Your platform needs a two-sided Trade Proposal Builder. User A selects an asset from User B’s showcase, selects 1-3 cards from their own virtual binder, adds a cash balance delta ($50-$500 via card authorization), and initiates an escrow hold.',
+        ],
+        technicalPoints: [
+          'Two-sided state machine: Draft -> Proposed -> Countered -> Accepted -> Escrow Funded -> Dual-Transit Tracking -> In-Person/Middleman Inspection -> Dual Release.',
+          'Fair Value Calculator: Automated indicator showing aggregate market value difference between side A and side B using recent 30-day sold data to prevent one-sided predatory trades.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'platform-recommendations',
+    category: 'platforms',
+    title: 'Platform Tech Stack Recommendations',
+    summary: 'Evaluating Custom Headless (Next.js + MedusaJS/Node) vs. Shopify Plus vs. Open-Source Magento for high-frequency collector volume.',
+    badge: 'Technology Selection Guide',
+    highlights: [
+      'Top Pick: Headless Next.js (App Router) + PostgreSQL + MedusaJS / Custom API',
+      'Search Engine: Meilisearch or Algolia for sub-20ms multi-facet instant filtering',
+      'Image Optimization: Cloudinary / Cloudflare Images with progressive macro-zoom',
+      'Database: PostgreSQL with JSONB and pgvector for card visual similarity matching',
+    ],
+    inDepthArchitecture: [
+      {
+        heading: 'The Platform Showdown: Why Monoliths Struggle',
+        paragraphs: [
+          'Shopify is built around single-merchant inventory and strict 100-variant limits per product. While Shopify Plus with Hydrogen can be adapted, multi-vendor card marketplaces quickly exceed variant limits and struggle with multi-party escrow holds and complex commission splits.',
+          'WooCommerce / WordPress suffers from database bloat once catalog size exceeds 50,000 card variations with high-frequency concurrent searches during new set releases.',
+        ],
+        technicalPoints: [
+          'Recommended Architecture: Next.js App Router for frontend & Server-Side Rendering (critical for SEO), PostgreSQL on Supabase or Cloud SQL for relational inventory integrity, Redis for session caching and rate-limiting high-frequency price lookups.',
+          'Headless Marketplace Core: MedusaJS 2.0 or custom Node.js/NestJS service running Stripe Connect marketplace transfers.',
+          'Search Engine: Algolia or Meilisearch dedicated cluster configured with custom ranking rules (e.g. prioritize verified hobby shop listings and exact set matches).',
+        ],
+        usMarketNote: 'High server concurrency is required during Friday "Set Drop" days (e.g. Pokemon Prismatic Evolutions release) where tens of thousands of collectors refresh listings simultaneously.',
+      },
+    ],
+  },
+  {
+    id: 'secure-transactions-escrow',
+    category: 'security',
+    title: 'Secure Transaction & Escrow Protocol (US Market)',
+    summary: 'Chargeback prevention, Stripe Connect Custom escrow workflows, USPS insured tracking rules, and tamper-evident authentication vaults.',
+    badge: 'Fraud & Financial Protection',
+    highlights: [
+      'Stripe Connect Custom with Separated Authorize & Delayed Capture',
+      'Dual Custody Escrow for High-Value Cards ($500+ Middleman Vault)',
+      'USPS Ground Advantage / Priority Mail with Mandatory Signature Confirmation on >$250 items',
+      'Tamper-Evident Packaging Protocols & Serialized Void Tape Requirements',
+      'IRS 1099-K US Tax Compliance & Marketplace Facilitator State Sales Tax',
+    ],
+    inDepthArchitecture: [
+      {
+        heading: '1. Financial Escrow State Machine via Stripe Connect',
+        paragraphs: [
+          'In card trading, the primary fraud risks are "empty box" scams, bait-and-switch returns (sending back a damaged card or fake duplicate), and credit card chargebacks.',
+          'Never execute an immediate capture and payout. When a buyer pays or two traders submit cards, the platform places an Authorization Hold or captures into a platform-controlled escrow holding account. Payout is only dispatched to seller Stripe accounts after the inspection window clears.',
+        ],
+        technicalPoints: [
+          'Payment flow: Stripe PaymentIntent with `capture_method: manual` or Transfer Group with delayed `stripe.transfers.create` trigger.',
+          '72-Hour Inspection Window: Starts strictly when carrier API (USPS/FedEx/UPS webhook) registers the "Delivered" timestamp.',
+          'Condition Dispute Arbitration: Buyers must submit unbroken unboxing video proof if condition does not match listing macro-scans. If verified, return shipping label is issued with required signature.',
+        ],
+        usMarketNote: 'Signature confirmation is mandatory in the US for PayPal/credit card seller protection over $250-$750 thresholds.',
+      },
+      {
+        heading: '2. US Regulatory & Tax Compliance',
+        paragraphs: [
+          'Operating an online marketplace in the United States requires compliance with the Marketplace Facilitator Act across 45+ states. Your platform is legally required to calculate, collect, and remit state sales tax on behalf of sellers (using TaxJar or Stripe Tax).',
+          'Additionally, sellers earning above IRS 1099-K thresholds must undergo automated KYC onboarding with Taxpayer Identification Number (SSN/EIN) verification prior to fund disbursement.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'programmatic-seo',
+    category: 'seo',
+    title: 'Programmatic SEO & Long-Tail Niche Visibility',
+    summary: 'Dominating Google rankings for tens of thousands of individual cards, rarity variants, set checklists, and condition price guides.',
+    badge: 'Search Engine Dominance',
+    highlights: [
+      'Hierarchical Semantic URLs: /{game}/{set-slug}/{card-slug}-{card-number}',
+      'Schema.org JSON-LD (Product, IndividualProduct, ItemCondition, AggregateOffer)',
+      'Long-Tail Query Targeting: "Price Guide", "PSA 10 Population", "Raw NM Value"',
+      'Automated Internal Linking Matrix (Set Checklists <-> Card Singles <-> Graded Comps)',
+      'Dynamic XML Sitemaps grouped by Game & Release Year with Daily Priority Updates',
+    ],
+    inDepthArchitecture: [
+      {
+        heading: '1. The Anatomy of Programmatic TCG Dominance',
+        paragraphs: [
+          'Card collectors rarely search for generic phrases like "buy cards". They search for hyper-specific long-tail terms: "Charizard 1st edition shadowless psa 9 price", "lorcana elsa enchanted pop count", or "mtg black lotus unlimited value".',
+          'By leveraging Next.js App Router Server Components and dynamic route parameters (`/cards/[game]/[set]/[cardSlug]`), every single card variant becomes an indexable, lightning-fast landing page pre-rendered with live price charts, population reports, and structured schema.',
+        ],
+        technicalPoints: [
+          'JSON-LD `IndividualProduct` for Graded Slabs: Encodes `serialNumber`, `itemCondition` (using schema.org condition enum), `category`, and `offers.priceValidUntil`.',
+          'JSON-LD `Product` with `aggregateOffer` for Raw Cards: Aggregates all live listings across NM, LP, MP conditions so Google displays "From $375.00 - In stock" directly in search engine snippets.',
+          'Dynamic Sitemaps: Split into `sitemap-pokemon.xml`, `sitemap-mtg.xml`, etc., capping each at 40,000 URLs and setting `lastmod` to update whenever a new verified sale or price index changes.',
+        ],
+        usMarketNote: 'Google US mobile search results heavily prioritize rich snippets with star ratings, in-stock badges, and price ranges. Valid Schema.org markup boosts CTR by up to 34%.',
+      },
+      {
+        heading: '2. Intent-Based Keyword Clustering Matrix',
+        paragraphs: [
+          'Create targeted programmatic sub-pages for distinct collector intents: (1) Marketplace Listing: `/buy/...`, (2) Historical Price Guide: `/price-guide/...`, and (3) Population Analysis: `/pop-report/...`. Cross-link them cleanly using breadcrumbs (`Home > Pokemon > Base Set > Charizard`).',
+        ],
+      },
+    ],
+  },
+];
