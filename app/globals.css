@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-base: #ffffff;
+    --bg-surface: #f8fafc;
+    --bg-elevated: #ffffff;
+    --bg-card: #ffffff;
+    --border-subtle: #e2e8f0;
+    --border-strong: #cbd5e1;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #0f172a;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom Smooth Light Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f8fafc;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+    border: 2px solid #f8fafc;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+/* Keyframes for Rev Slider rotating left-to-right */
+@keyframes revSliderLtr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-slider-ltr {
+  display: flex;
+  width: max-content;
+  animation: revSliderLtr 45s linear infinite;
+}
+
+.animate-slider-ltr:hover,
+.slider-paused {
+  animation-play-state: paused !important;
+}

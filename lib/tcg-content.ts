@@ -158,4 +158,22 @@ export const FAQ_ITEMS: FaqItem[] = [
     question: 'What payment methods do you accept at checkout?',
     answer: 'We support Apple Pay, Chime, Cash App ($Cashtag), Zelle instant bank transfer, Bitcoin (BTC on-chain and Lightning), credit cards, and our dual-custody 72-Hour Vault Escrow hold. In preview mode, orders can be placed and inventory reserved without entering financial credentials.',
   },
+  {
+    id: 'faq-8',
+    category: 'Orders & Shipping',
+    question: 'What happens if a package is lost or damaged during transit?',
+    answer: 'Every shipment leaving our facility is 100% insured via full-value cargo insurance. If a carrier damages the armored box or loses the parcel, our escrow vault immediately processes a 100% full refund to the buyer while our claims department handles the carrier recovery. You are never left out of pocket.',
+  },
+  {
+    id: 'faq-9',
+    category: 'Authentication & Grading',
+    question: 'Are sealed Booster Boxes and Elite Trainer Boxes guaranteed unweighed?',
+    answer: 'Yes. All sealed product lines—including the Mega Evolution Chaos Rising Elite Trainer Boxes—are sourced directly from factory-sealed distributor master cases. Every box is inspected for authentic manufacturer shrink wrap with official logos, flawless factory seams, and zero signs of tampering or re-sealing.',
+  },
+  {
+    id: 'faq-10',
+    category: 'Trading & Escrow',
+    question: 'How does the AI Card Appraiser calculate real-time valuations?',
+    answer: 'Our AI Card Appraiser analyzes real-time realized sales comps from eBay Historical, PWCC Vault, Goldin Auctions, and PriceCharting API. It weights recent PSA 10 and BGS 9.5 sale velocity, subgrade premiums, and population trends to provide a fair market trade value within 1.5% accuracy.',
+  },
 ];

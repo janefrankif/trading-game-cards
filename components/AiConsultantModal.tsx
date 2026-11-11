@@ -6,13 +6,11 @@ import {
   Sparkles, 
   Send, 
   Loader2, 
-  ShieldCheck, 
   Bot, 
-  User, 
-  HelpCircle,
-  Code2
+  User
 } from 'lucide-react';
 import { CardItem } from '@/lib/marketplace-data';
+import { useTheme } from '@/lib/theme-context';
 
 interface AiConsultantModalProps {
   isOpen: boolean;
@@ -30,6 +28,7 @@ export function AiConsultantModal({
   onClose,
   activeCard,
 }: AiConsultantModalProps) {
+  const { colors } = useTheme();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
@@ -77,7 +76,7 @@ export function AiConsultantModal({
           { role: 'assistant', text: 'Sorry, I encountered an issue retrieving the analysis. Please try again.' },
         ]);
       }
-    } catch (err) {
+    } catch {
       setMessages([
         ...newMessages,
         { role: 'assistant', text: 'Error connecting to the consultant service. Please check your network and try again.' },
@@ -88,39 +87,39 @@ export function AiConsultantModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
       <div 
         id="ai-consultant-modal"
-        className="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-2xl h-[620px] shadow-2xl text-slate-100 flex flex-col overflow-hidden relative"
+        className="bg-white border border-zinc-200 rounded-3xl w-full max-w-2xl h-[620px] shadow-2xl text-zinc-900 flex flex-col overflow-hidden relative"
       >
         {/* Header */}
-        <div className="p-4 bg-slate-950/70 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-4 bg-zinc-50 border-b border-zinc-200 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-sm">
+            <div className={`w-8 h-8 rounded-xl ${colors.buttonBg} ${colors.buttonText} flex items-center justify-center font-black text-sm shadow-xs`}>
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-white text-sm">TCG Marketplace Strategy Advisor</h3>
-              <p className="text-[11px] text-slate-400">Expert guidance on tech stack, escrow, fees & SEO</p>
+              <h3 className="font-bold text-zinc-900 text-sm">TCG Marketplace Strategy Advisor</h3>
+              <p className="text-[11px] text-zinc-500">Expert guidance on tech stack, escrow, fees & SEO</p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white"
+            className="p-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-500 hover:text-zinc-900 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Quick Suggestion Chips */}
-        <div className="p-2.5 bg-slate-950/40 border-b border-slate-800 flex items-center gap-1.5 overflow-x-auto scrollbar-none text-[11px]">
-          <span className="text-slate-500 text-[10px] uppercase font-bold shrink-0 ml-1">Quick Prompts:</span>
+        <div className="p-2.5 bg-zinc-50 border-b border-zinc-200 flex items-center gap-1.5 overflow-x-auto scrollbar-none text-[11px]">
+          <span className="text-zinc-400 text-[10px] uppercase font-bold shrink-0 ml-1">Quick Prompts:</span>
           {quickQuestions.map((q, idx) => (
             <button
               key={idx}
               onClick={() => handleSendMessage(q)}
-              className="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white whitespace-nowrap transition-colors border border-slate-700/60"
+              className="px-2.5 py-1 rounded-full bg-white hover:bg-zinc-100 text-zinc-700 hover:text-zinc-950 whitespace-nowrap transition-colors border border-zinc-200 shadow-xs"
             >
               {q}
             </button>
@@ -135,7 +134,7 @@ export function AiConsultantModal({
               className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {msg.role === 'assistant' && (
-                <div className="w-7 h-7 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center shrink-0 text-indigo-300">
+                <div className={`w-7 h-7 rounded-lg ${colors.badgeBg} border ${colors.badgeBorder} flex items-center justify-center shrink-0 ${colors.textAccent}`}>
                   <Bot className="w-4 h-4" />
                 </div>
               )}
@@ -143,15 +142,15 @@ export function AiConsultantModal({
               <div
                 className={`max-w-[85%] rounded-2xl p-3.5 leading-relaxed ${
                   msg.role === 'user'
-                    ? 'bg-indigo-600 text-white font-medium rounded-br-none'
-                    : 'bg-slate-800/80 text-slate-200 border border-slate-700/60 rounded-bl-none prose-invert'
+                    ? `${colors.buttonBg} ${colors.buttonText} font-semibold rounded-br-none shadow-xs`
+                    : 'bg-zinc-100 text-zinc-800 border border-zinc-200 rounded-bl-none shadow-xs'
                 }`}
               >
                 <div className="whitespace-pre-wrap">{msg.text}</div>
               </div>
 
               {msg.role === 'user' && (
-                <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 text-slate-300">
+                <div className="w-7 h-7 rounded-lg bg-zinc-200 flex items-center justify-center shrink-0 text-zinc-700 font-bold">
                   <User className="w-4 h-4" />
                 </div>
               )}
@@ -159,8 +158,8 @@ export function AiConsultantModal({
           ))}
 
           {isLoading && (
-            <div className="flex gap-3 justify-start items-center text-slate-400 text-xs">
-              <div className="w-7 h-7 rounded-lg bg-indigo-600/30 flex items-center justify-center text-indigo-300">
+            <div className="flex gap-3 justify-start items-center text-zinc-500 text-xs">
+              <div className={`w-7 h-7 rounded-lg ${colors.badgeBg} flex items-center justify-center ${colors.textAccent}`}>
                 <Loader2 className="w-4 h-4 animate-spin" />
               </div>
               <span>Consultant analyzing marketplace protocols...</span>
@@ -169,7 +168,7 @@ export function AiConsultantModal({
         </div>
 
         {/* Input Form */}
-        <div className="p-3 bg-slate-950/80 border-t border-slate-800 flex items-center gap-2">
+        <div className="p-3 bg-zinc-50 border-t border-zinc-200 flex items-center gap-2">
           <input
             type="text"
             placeholder="Ask about escrow, SEO schema, shipping insurance, or tech stack..."
@@ -178,13 +177,13 @@ export function AiConsultantModal({
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleSendMessage();
             }}
-            className="flex-1 px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+            className="flex-1 px-3 py-2 bg-white border border-zinc-200 hover:border-zinc-300 rounded-xl text-xs text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-zinc-400"
           />
           <button
             id="send-ai-consultant-msg"
             onClick={() => handleSendMessage()}
             disabled={!inputValue.trim() || isLoading}
-            className="p-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white transition-colors"
+            className={`p-2.5 rounded-xl ${colors.buttonBg} ${colors.buttonText} disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-xs`}
           >
             <Send className="w-4 h-4" />
           </button>

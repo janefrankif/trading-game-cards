@@ -128,7 +128,7 @@ export const SAMPLE_CARDS: CardItem[] = [
       70,
       70
     ],
-    "image": "https://picsum.photos/seed/tcg-1/600/840",
+    "image": "/products/chaos-rising-etb.jpeg",
     "allowTrades": false,
     "description": "Factory sealed Chaose Rising Etbs. Guaranteed untampered.",
     "seoData": {
