@@ -8,7 +8,6 @@ import {
   Search, 
   Menu, 
   X, 
-  Lock,
   Home,
   BookOpen,
   HelpCircle,
@@ -52,8 +51,6 @@ export function TcgHeader({
   onNavigate,
   cartCount,
   onOpenCart,
-  onOpenTradeModal,
-  onOpenAiModal,
   searchQuery,
   setSearchQuery,
   selectedCategory,
@@ -64,9 +61,17 @@ export function TcgHeader({
   const { colors } = useTheme();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 12);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -80,46 +85,18 @@ export function TcgHeader({
   return (
     <header 
       id="main-tcg-header"
-      className="sticky top-0 z-50 w-full transition-all duration-300"
-      style={{ position: 'sticky', top: 0 }}
+      className="sticky top-0 z-50 w-full transform-gpu bg-white/95 backdrop-blur-md transition-shadow duration-200"
     >
-      {/* Top Banner Notice: Clean Light Slate with Emerald Highlights */}
-      <div className={`bg-slate-50 border-b border-zinc-200 text-[11px] px-4 text-zinc-600 transition-all duration-300 overflow-hidden ${
+      {/* Main Navigation Bar — Hardware-Accelerated Stable Sticky Header */}
+      <div className={`border-b transition-shadow duration-200 ${
         isScrolled 
-          ? 'max-h-0 py-0 opacity-0 border-none pointer-events-none' 
-          : 'max-h-12 py-1.5 opacity-100'
-      }`}>
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded text-[10px] border border-emerald-200">
-              TRUSTED TRADING
-            </span>
-            <span className="truncate text-zinc-600">
-              72-Hour Inspection Escrow • Mandatory Adult Signature on Orders $250+
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3 text-[11px] text-zinc-600">
-            <span className="flex items-center gap-1 text-zinc-700 font-medium">
-              <Lock className="w-3 h-3 text-emerald-600" />
-              <span>Dual-Custody Vault</span>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation Bar — Pure Crisp White */}
-      <div className={`border-b transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md border-zinc-200/90 shadow-md' 
-          : 'bg-white border-zinc-200 shadow-xs'
+          ? 'border-zinc-200/90 shadow-md' 
+          : 'border-zinc-200 shadow-xs'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Top Header Row: Branding, Wide Search, and CTAs */}
-          <div className={`flex items-center justify-between transition-all duration-300 ${
-            isScrolled ? 'h-14' : 'h-16'
-          } gap-3 sm:gap-6`}>
+          {/* Main Header Row: Branding, Wide Search, and CTAs (Fixed Height h-16) */}
+          <div className="flex items-center justify-between h-16 gap-3 sm:gap-6">
             
             {/* Site Logo & Brand Mark */}
             <div 
@@ -310,3 +287,5 @@ export function TcgHeader({
     </header>
   );
 }
+
+
