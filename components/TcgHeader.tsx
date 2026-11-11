@@ -6,18 +6,15 @@ import {
   ShieldCheck, 
   ShoppingBag, 
   Search, 
-  Sparkles, 
   Menu, 
   X, 
   Lock,
   Home,
   BookOpen,
   HelpCircle,
-  Mail,
-  Palette,
-  Check
+  Mail
 } from 'lucide-react';
-import { useTheme, ACCENT_PALETTES, AccentColor } from '@/lib/theme-context';
+import { useTheme } from '@/lib/theme-context';
 
 interface TcgHeaderProps {
   activeSection: string;
@@ -64,8 +61,7 @@ export function TcgHeader({
 }: TcgHeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isThemePickerOpen, setIsThemePickerOpen] = useState(false);
-  const { accent, setAccent, colors } = useTheme();
+  const { colors } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,14 +104,6 @@ export function TcgHeader({
               <Lock className="w-3 h-3 text-emerald-600" />
               <span>Dual-Custody Vault</span>
             </span>
-            <span className="text-zinc-300">|</span>
-            <button 
-              onClick={onOpenAiModal}
-              className={`hidden md:flex items-center gap-1 ${colors.textAccent} hover:text-zinc-950 transition-colors font-semibold`}
-            >
-              <Sparkles className="w-3 h-3 text-amber-500" />
-              <span>AI Card Appraiser</span>
-            </button>
           </div>
         </div>
       </div>
@@ -128,7 +116,7 @@ export function TcgHeader({
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Top Header Row: Branding, Wide Search, Theme Switcher, and CTAs */}
+          {/* Top Header Row: Branding, Wide Search, and CTAs */}
           <div className={`flex items-center justify-between transition-all duration-300 ${
             isScrolled ? 'h-14' : 'h-16'
           } gap-3 sm:gap-6`}>
@@ -179,84 +167,8 @@ export function TcgHeader({
               )}
             </div>
 
-            {/* Actions: Theme Switcher, AI Appraiser, Order CTA, Cart, Mobile Toggle */}
+            {/* Actions: Order CTA, Cart, Mobile Toggle */}
             <div className="flex items-center gap-2 sm:gap-3">
-              
-              {/* Secondary Color Theme Selector Pill */}
-              <div className="relative">
-                <button
-                  onClick={() => setIsThemePickerOpen(!isThemePickerOpen)}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 text-xs font-medium transition-all shadow-xs"
-                  title="Customize Secondary Accent Color"
-                >
-                  <span 
-                    className="w-3 h-3 rounded-full border border-black/10 shrink-0 shadow-xs" 
-                    style={{ backgroundColor: colors.hex }}
-                  />
-                  <span className="hidden xl:inline text-[11px] font-semibold text-zinc-700">
-                    {colors.name}
-                  </span>
-                  <Palette className="w-3.5 h-3.5 text-zinc-500" />
-                </button>
-
-                {/* Theme Dropdown Menu */}
-                {isThemePickerOpen && (
-                  <div className="absolute right-0 mt-2 w-64 bg-white border border-zinc-200 rounded-2xl p-2.5 shadow-xl z-50 animate-in fade-in zoom-in-95 space-y-1">
-                    <div className="px-2 py-1 text-[11px] font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-100 mb-1 flex items-center justify-between">
-                      <span>Secondary Accent</span>
-                      <span className="text-[10px] text-zinc-400 font-normal">White Theme</span>
-                    </div>
-
-                    {(Object.keys(ACCENT_PALETTES) as AccentColor[]).map((key) => {
-                      const pal = ACCENT_PALETTES[key];
-                      const isSelected = accent === key;
-                      return (
-                        <button
-                          key={key}
-                          onClick={() => {
-                            setAccent(key);
-                            setIsThemePickerOpen(false);
-                          }}
-                          className={`w-full flex items-center justify-between p-2 rounded-xl text-xs transition-colors text-left ${
-                            isSelected ? 'bg-zinc-100 text-zinc-900 font-bold' : 'hover:bg-zinc-50 text-zinc-600'
-                          }`}
-                        >
-                          <div className="flex items-center gap-2.5">
-                            <span 
-                              className="w-4 h-4 rounded-full border border-black/10 shrink-0" 
-                              style={{ backgroundColor: pal.hex }}
-                            />
-                            <div>
-                              <div className="flex items-center gap-1.5">
-                                <span className="font-semibold">{pal.name}</span>
-                                {pal.recommended && (
-                                  <span className="text-[9px] px-1 py-0.2 rounded bg-amber-100 text-amber-800 border border-amber-200 font-bold">
-                                    ★ Suggested
-                                  </span>
-                                )}
-                              </div>
-                              <div className="text-[10px] text-zinc-500 leading-tight">
-                                {pal.tagline}
-                              </div>
-                            </div>
-                          </div>
-                          {isSelected && <Check className="w-3.5 h-3.5 text-zinc-900 shrink-0 ml-1" />}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              {/* AI Appraiser Button */}
-              <button
-                onClick={onOpenAiModal}
-                className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-800 hover:text-zinc-950 font-bold text-xs transition-colors"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                <span>AI Appraiser</span>
-              </button>
-
               {/* Order Now CTA */}
               <button
                 onClick={() => onNavigate('shop')}

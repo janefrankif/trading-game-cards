@@ -4,16 +4,11 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { 
   ShieldCheck, 
-  Repeat, 
   Sparkles, 
   ArrowRight, 
   Clock, 
   Lock, 
-  ShoppingBag,
-  Flame,
-  Maximize2,
-  X,
-  ZoomIn
+  ShoppingBag
 } from 'lucide-react';
 import { CardItem } from '@/lib/marketplace-data';
 import { useTheme } from '@/lib/theme-context';
@@ -32,8 +27,7 @@ export function TcgHero({
   onOpenTradeModal,
   onOpenAiAppraiser,
 }: TcgHeroProps) {
-  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
-  const [imageDisplayMode, setImageDisplayMode] = useState<'fit' | 'fill'>('fit');
+  const [imageDisplayMode] = useState<'fit' | 'fill'>('fit');
   const { colors } = useTheme();
 
   return (
@@ -83,24 +77,6 @@ export function TcgHero({
               <span className="font-bold text-white">Bilateral Trading & Escrow Engine</span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-emerald-400 text-[10px] font-mono font-bold uppercase tracking-wider">Vault Active</span>
-            </div>
-
-            {/* Image Controls: Cover Toggle & HD View */}
-            <div className="flex items-center gap-2">
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-zinc-800 text-[11px] font-mono text-zinc-300">
-                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: colors.hex }} />
-                <span>16:9 Cover Master</span>
-              </span>
-
-              <button
-                onClick={() => setIsFullscreenOpen(true)}
-                className="px-3 py-1.5 rounded-xl bg-zinc-950/85 hover:bg-zinc-800 backdrop-blur-md border border-zinc-700/80 hover:border-zinc-500 text-zinc-200 hover:text-white text-xs font-medium flex items-center gap-1.5 shadow-md transition-all hover:scale-102"
-                aria-label="Expand cover image to full screen"
-                title="View Original High-Resolution Image"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>View Full HD</span>
-              </button>
             </div>
           </div>
 
@@ -217,50 +193,7 @@ export function TcgHero({
 
       </div>
 
-      {/* Fullscreen High-Resolution Cover Image Modal */}
-      {isFullscreenOpen && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={() => setIsFullscreenOpen(false)}
-        >
-          <div 
-            className="relative max-w-6xl w-full max-h-[90vh] flex flex-col items-center justify-center bg-zinc-950 border border-zinc-800 rounded-3xl p-4 sm:p-6 overflow-hidden shadow-2xl space-y-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="w-full flex items-center justify-between pb-2 border-b border-zinc-800 text-xs text-zinc-300">
-              <div className="flex items-center gap-2 font-bold text-white">
-                <ZoomIn className={`w-4 h-4 ${colors.textAccent}`} />
-                <span>Premier Collection Cover Art — High Resolution Master</span>
-              </div>
-              <button
-                onClick={() => setIsFullscreenOpen(false)}
-                className="p-1.5 rounded-lg bg-zinc-850 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors"
-                aria-label="Close modal"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="relative w-full h-[65vh] sm:h-[75vh] rounded-2xl overflow-hidden bg-black/70 flex items-center justify-center">
-              <Image
-                src="/hero-cover.png"
-                alt="Premier TCG Collection Cover Art HD Master"
-                fill
-                className="object-contain"
-                quality={100}
-                priority
-                referrerPolicy="no-referrer"
-              />
-            </div>
-
-            <div className="w-full flex items-center justify-between text-[11px] text-zinc-400 pt-1">
-              <span>Full original resolution: 16:9 uncompressed master</span>
-              <span>Click outside or Esc to close</span>
-            </div>
-          </div>
-        </div>
-      )}
-
     </section>
   );
 }
+
